@@ -1,0 +1,16 @@
+<div class="register-logo">
+  <b>Doctor Hub</b>
+</div>
+<div class="register-box-body">
+  <p class="login-box-msg">Forgot your password?</p>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group has-feedback">
+      <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'Enter registered email' %>
+    </div>
+    <%= f.submit "Send me reset password instructions", class: 'btn btn-primary btn-block btn-flat' %>
+  <% end %>
+  <div class="social-auth-links">
+    <%= render "doctors/shared/links" %>
+  </div>
+</div>

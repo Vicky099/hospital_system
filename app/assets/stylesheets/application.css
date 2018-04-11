@@ -12,9 +12,15 @@
  *
  *= require_tree .
  *= require_self
- *= require bootstrap
- *= require AdminLTE.min
- *= require skin-blue.min
  *= require font-awesome
  *= require bootstrap-datepicker3
+ *= require_tree .
  */
+
+/* start login page css*/
+.login-page {
+  background-image: url('/assets/login_back.jpg');
+  background-repeat: no-repeat;
+  background-size:cover
+}
+/* end login page css*/

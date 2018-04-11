@@ -38,26 +38,26 @@
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="assets/user2.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
+            <%= image_tag current_doctor.photo_url, class: "user-image", alt:'User Image' %>
+            <span class="hidden-xs"><%= current_doctor.email.split("@")[0] %></span>
           </a>
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img src="assets/user2.jpg" class="img-circle" alt="User Image">
+              <%= image_tag current_doctor.photo_url, class: "img-circle", alt: "User Image" %>
               <p>
-                Alexander Pierce - BHMS
-                <small>Member since Nov. 2012</small>
+                <%= current_doctor.email.split("@")[0] %> - BHMS
+                <small>Member since <%= current_doctor.created_at.strftime("%B %Y")%> </small>
               </p>
             </li>
             <!-- Menu Body -->
             <!-- Menu Footer-->
             <li class="user-footer">
               <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                <%= link_to "Profile", edit_doctor_registration_path, class: "btn btn-default btn-flat" %>
               </div>
               <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                <%= link_to "Sign out", destroy_doctor_session_path, class: "btn btn-default btn-flat" %>
               </div>
             </li>
           </ul>

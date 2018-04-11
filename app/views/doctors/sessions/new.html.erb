@@ -1,0 +1,38 @@
+<div class="login-box">
+  <div class="login-logo">
+    <b>Doctor Hub</b>
+  </div>
+  <div class="login-box-body">
+    <p class="login-box-msg">Sign in</p>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-group has-feedback">
+        <%= f.email_field :email, autofocus: true, class: "form-control", placeholder: "Email" %>
+      </div>
+      <div class="form-group has-feedback">
+        <%= f.password_field :password, autocomplete: "off",class: "form-control", placeholder: "Password" %>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="form-group">
+            <%= f.check_box :remember_me %> Remember Me
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <%= f.submit "Log in", class: "btn btn-primary btn-block btn-flat" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="social-auth-links text-center">
+      <p>- OR -</p>
+      <%= link_to doctor_facebook_omniauth_authorize_path, class: 'btn btn-block btn-social btn-facebook btn-flat' do   %>
+        <i class="fa fa-facebook"></i>
+        Sign up using Facebook
+      <% end %>
+      <%= link_to doctor_google_oauth2_omniauth_authorize_path, class: 'btn btn-block btn-social btn-google btn-flat' do   %>
+        <i class="fa fa-google-plus"></i>
+        Sign up using Google+
+      <% end %>
+    </div>
+    <%= render "doctors/shared/links" %>
+  </div>
+</div>

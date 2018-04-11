@@ -1,5 +1,5 @@
 require_relative 'boot'
-
+require 'sprockets/railtie'
 require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
@@ -14,5 +14,12 @@ module HmsSystem
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
+    config.to_prepare do
+      Devise::SessionsController.layout "devise"
+      Devise::RegistrationsController.layout proc{ |controller| doctor_signed_in? ? "application" : "devise" }
+      Devise::ConfirmationsController.layout "devise"
+      Devise::UnlocksController.layout "devise"
+      Devise::PasswordsController.layout "devise"
+    end
   end
 end

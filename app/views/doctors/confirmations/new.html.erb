@@ -1,0 +1,16 @@
+<div class="register-logo">
+  <b>Doctor Hub</b>
+</div>
+<div class="register-box-body">
+  <p class="login-box-msg">Resend confirmation instructions</p>
+  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="form-group has-feedback">
+      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email), class: 'form-control', placeholder: 'Email' %>
+    </div>
+    <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary btn-block btn-flat' %>
+  <% end %>
+  <div class="social-auth-links">
+    <%= render "doctors/shared/links" %>
+  </div>
+</div>

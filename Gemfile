@@ -41,6 +41,12 @@ gem 'bootstrap-datepicker-rails'
 gem 'will_paginate-bootstrap'
 gem 'sprockets-rails'
 gem 'pry'
+gem 'devise'
+gem 'jquery-turbolinks', '~> 2.1'
+gem 'omniauth-facebook'
+gem "figaro"
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
