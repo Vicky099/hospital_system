@@ -6,13 +6,13 @@ class Doctor < ApplicationRecord
   enum gender: {male: '0', female: '1'}
 
   def self.from_omniauth(auth)
-    binding.pry
     where(provider: auth.provider, uid: auth.uid).first_or_create do |doctor|
       doctor.email = auth.info.email
       doctor.provider = auth.provider
       doctor.uid = auth.uid
       doctor.password = Devise.friendly_token[0,20]
-      #user.full_name = auth.info.first_name+ " " +auth.info.last_name
+      doctor.first_name = auth.info.first_name
+      doctor.last_name = auth.info.last_name
     end
   end
 
@@ -22,6 +22,15 @@ class Doctor < ApplicationRecord
     else
       return 'http://res.cloudinary.com/ddbkhb3vl/image/asset/v1517130970/default-f923b61d87de05d96ee32141d21c6e68.png'
     end
+  end
+
+  def full_name
+    if self.first_name.present? && self.last_name.present?
+      full_name = self.first_name+" "+self.last_name
+    else
+      full_name = self.email.split("@")[0]
+    end
+    return full_name
   end
 
 end
