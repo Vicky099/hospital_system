@@ -3,6 +3,7 @@ class Doctor < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
   has_one :picture, as: :imageable, dependent: :destroy
+  enum gender: {male: '0', female: '1'}
 
   def self.from_omniauth(auth)
     binding.pry

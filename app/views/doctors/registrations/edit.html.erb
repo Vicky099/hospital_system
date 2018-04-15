@@ -1,51 +1,143 @@
-<div class="box box-default">
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <div class="box-header with-border">
-      <h3 class="box-title"><%= resource_name.to_s.humanize %> Profile</h3>
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
-      </div>
-    </div>
-  <!-- /.box-header -->
-    <div class="box-body">
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, class: 'form-control' %>
-            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+<div class="row">
+  <div class="col-md-3">
+    <%= render partial: 'doctors/profile_sidebar' %>
+  </div>
+  <!-- /.col -->
+  <div class="col-md-9">
+    <div class="nav-tabs-custom">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#timeline" data-toggle="tab">Update Personal Info</a></li>
+        <li><a href="#activity" data-toggle="tab">Update Account Info</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="active tab-pane" id="timeline">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal'}) do |f| %>
+            <div class="form-group">
+              <%= f.label :first_name,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :first_name, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :last_name,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :last_name, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :mobile_no,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :mobile_no, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :gender,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.select(:gender, Doctor.genders.keys, {prompt: 'Select gender'}, {:class => 'form-control'}) %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :residence_address,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_area :residence_address, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :city,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :city, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :state,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :state, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :education,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :education, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :skills,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :skills, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :specialist,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :specialist, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :thoughts,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :thoughts, class: 'form-control' %>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit 'Update Info', class: 'btn btn-success' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane" id="activity">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'form-horizontal'}) do |f| %>
+            <div class="form-group">
+              <%= f.label :email,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :email, class: 'form-control', readonly: true %>
+              </div>
+            </div>
+            <div class="form-group">
+              <%= f.label :provider,class: 'col-sm-2 control-label' %>
+              <div class="col-sm-10">
+                <%= f.text_field :provider, class: 'form-control', readonly: true %>
+              </div>
+            </div>
+            <% if current_doctor.provider.blank? %>
+              <div class="form-group">
+                <%= f.label :password,class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <i>(leave blank if you don't want to change it)</i>
+                  <%= f.text_field :password, class: 'form-control' %>
+                  <% if @minimum_password_length %>
+                    <em><%= @minimum_password_length %> characters minimum</em>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :password_confirmation,class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <%= f.text_field :password_confirmation, class: 'form-control' %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :current_password,class: 'col-sm-2 control-label' %>
+                <div class="col-sm-10">
+                  <i>(we need your current password to confirm your changes)</i>
+                  <%= f.text_field :current_password, class: 'form-control' %>
+                </div>
+              </div>
+            <% else %>
+              <div class="form-group">
+                <div class="col-sm-12">
+                  <i>Note: For Facebook and Gmail Login no account update activity.</i>
+                </div>
+              </div>
             <% end %>
-          </div>
-          <!-- /.form-group -->
+          <% end %>
+          <!-- /.post -->
         </div>
-        <div class="col-md-6" >
-          <div class="form-group">
-            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-            <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
-            <% if @minimum_password_length %>
-              <br />
-              <em><%= @minimum_password_length %> characters minimum</em>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "off",class: 'form-control' %>
-          </div>
-        </div>
+        <!-- /.tab-pane -->
       </div>
+      <!-- /.tab-content -->
     </div>
-    <div class="box-footer">
-      <%= f.submit "Update", class: 'btn btn-primary' %>
-    </div>
-  <% end %>
+    <!-- /.nav-tabs-custom -->
+  </div>
+  <!-- /.col -->
 </div>

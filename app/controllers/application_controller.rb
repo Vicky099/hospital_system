@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resources)
     dashboards_path
@@ -14,5 +15,10 @@ class ApplicationController < ActionController::Base
       flash[:danger] = "You must login first"
       redirect_to new_doctor_session_path
     end
+  end
+
+  protected
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name, :gender, :mobile_no, :residence_address, :city, :state, :education, :specialist, :skills, :thoughts])
   end
 end

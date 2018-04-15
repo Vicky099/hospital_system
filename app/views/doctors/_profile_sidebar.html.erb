@@ -1,0 +1,63 @@
+<!-- Profile Image -->
+<div class="box box-primary">
+  <div class="box-body box-profile">
+    <%= image_tag current_doctor.photo_url, class: 'profile-user-img img-responsive img-circle', alt: 'User profile picture' %>
+
+    <h3 class="profile-username text-center"><%= current_doctor.first_name+' '+current_doctor.last_name %></h3>
+
+    <p class="text-muted text-center"><%= current_doctor.education %></p>
+
+    <ul class="list-group list-group-unbordered">
+      <li class="list-group-item">
+        <b>Mobile No.</b> <span class="pull-right"><%= current_doctor.mobile_no %></span>
+      </li>
+      <li class="list-group-item">
+        <b>Patient Count</b> <a class="pull-right">543</a>
+      </li>
+    </ul>
+    <%= link_to 'Update Personal Info', edit_doctor_registration_path, class: 'btn btn-primary btn-block' %>
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<!-- About Me Box -->
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <h3 class="box-title">About Me</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
+    <p class="text-muted">
+      <%= current_doctor.education %>
+    </p>
+    <hr>
+    <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
+    <p class="text-muted"><%= current_doctor.city.titleize+ ', ' +current_doctor.state.titleize %></p>
+    <hr>
+    <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+    <% if current_doctor.skills.present? %>
+      <p>
+        <% current_doctor.skills.split(',').each_with_index do |skill, index| %>
+          <% if [0,5,10,15].include?(index) %>
+            <span class="label label-danger"><%= skill %></span>
+          <% elsif [1,6,11,16].include?(index) %>
+            <span class="label label-success"><%= skill %></span>
+          <% elsif [2,7,12,17].include?(index) %>
+            <span class="label label-info"><%= skill %></span>
+          <% elsif [3,8,13,18].include?(index) %>
+            <span class="label label-warning"><%= skill %></span>
+          <% elsif [4,9,14,19].include?(index) %>
+            <span class="label label-primary"><%= skill %></span>
+          <% end %>
+        <% end %>
+      </p>
+      <hr>
+    <% end %>
+    <strong><i class="fa fa-file-text-o margin-r-5"></i> Thoughts</strong>
+    <p><%= current_doctor.thoughts %></p>
+  </div>
+  <!-- /.box-body -->
+</div>
+<!-- /.box -->

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :doctors, :controllers => {:omniauth_callbacks => "doctors/omniauth_callbacks"}
+  devise_for :doctors, :controllers => {:omniauth_callbacks => "doctors/omniauth_callbacks", :registrations => "registrations"}
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_scope :doctor do
     root to: "devise/sessions#new"
@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   end
 
   resources :dashboards
+  resources :doctors
 end
