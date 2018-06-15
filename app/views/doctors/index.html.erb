@@ -19,7 +19,7 @@
                   <b> Name :</b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.first_name+' '+current_doctor.last_name %>
+                  <%= current_doctor.first_name.to_s+' '+current_doctor.last_name.to_s %>
                 </div>
               </div><br/>
               <div class="row">
@@ -43,7 +43,7 @@
                   <b> Residence Address : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.residence_address+", "+current_doctor.city+", "+current_doctor.state %>
+                  <%= current_doctor.residence_address.to_s+", "+current_doctor.city.to_s+", "+current_doctor.state.to_s %>
                 </div>
               </div><br/>
               <div class="row">
@@ -51,7 +51,7 @@
                   <b> Education & Specialist : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.education+", "+current_doctor.specialist %>
+                  <%= current_doctor.education.to_s+", "+current_doctor.specialist.to_s %>
                 </div>
               </div><br/>
             </div>
@@ -97,7 +97,7 @@
                   <b> Name :</b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.first_name+' '+current_doctor.last_name %>
+                  <%= current_doctor.first_name.to_s+' '+current_doctor.last_name.to_s %>
                 </div>
               </div><br/>
               <div class="row">
@@ -121,7 +121,7 @@
                   <b> Residence Address : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.residence_address+", "+current_doctor.city+", "+current_doctor.state %>
+                  <%= current_doctor.residence_address.to_s+", "+current_doctor.city.to_s+", "+current_doctor.state.to_s %>
                 </div>
               </div><br/>
               <div class="row">
@@ -129,7 +129,7 @@
                   <b> Education & Specialist : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.education+", "+current_doctor.specialist %>
+                  <%= current_doctor.education.to_s+", "+current_doctor.specialist.to_s %>
                 </div>
               </div><br/>
             </div>

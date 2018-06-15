@@ -34,11 +34,11 @@
     </p>
     <hr>
     <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
-    <p class="text-muted"><%= current_doctor.city.titleize+ ', ' +current_doctor.state.titleize %></p>
+    <p class="text-muted"><%= current_doctor.city.to_s.titleize.to_s+ ', ' +current_doctor.state.to_s.titleize.to_s %></p>
     <hr>
     <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
-    <% if current_doctor.skills.present? %>
-      <p>
+    <p class="text-muted">
+      <% if current_doctor.skills.present? %>
         <% current_doctor.skills.split(',').each_with_index do |skill, index| %>
           <% if [0,5,10,15].include?(index) %>
             <span class="label label-danger"><%= skill %></span>
@@ -52,11 +52,11 @@
             <span class="label label-primary"><%= skill %></span>
           <% end %>
         <% end %>
-      </p>
-      <hr>
     <% end %>
+    </p>
+    <hr>
     <strong><i class="fa fa-file-text-o margin-r-5"></i> Thoughts</strong>
-    <p><%= current_doctor.thoughts %></p>
+    <p class="text-muted"><%= current_doctor.thoughts %></p>
   </div>
   <!-- /.box-body -->
 </div>
