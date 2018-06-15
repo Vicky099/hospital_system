@@ -12,6 +12,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def update
+    current_doctor.build_picture(photo: params[:doctor][:photo]) if params[:doctor][:photo].present?
     if current_doctor.update_attributes(doctor_params)
       flash[:success] = 'Profile details updated successfully!!'
       redirect_to doctors_path

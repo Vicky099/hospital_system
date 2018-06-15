@@ -255,8 +255,8 @@ Devise.setup do |config|
                   scope: 'public_profile,email',
                   info_fields: 'email,first_name,last_name,gender,birthday,location,picture',
                   client_options: {
-                    site: 'https://graph.facebook.com/v2.11',
-                    authorize_url: "https://www.facebook.com/v2.11/dialog/oauth"
+                    site: 'https://graph.facebook.com/v3.0',
+                    authorize_url: "https://www.facebook.com/v3.0/dialog/oauth"
                   }
   config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {}
   # ==> Warden configuration

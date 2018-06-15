@@ -18,3 +18,23 @@
 //= require adminlte.min
 //= require turbolinks
 //= require_tree .
+
+
+function readURL(input) {
+  var validFileExtension = ['jpg', 'JPG', 'jpeg', 'JPEG', 'png', 'PNG', 'gif', 'GIF', 'bmp', 'BMP'];
+  if ($.inArray($(input).val().split('.').pop().toLowerCase(), validFileExtension) == -1) {
+    swal("Sorry !!! Allowed image formats are '.jpeg','.jpg', '.png', '.gif', '.bmp'");
+  }else{
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#profile-image img')
+        .attr('src', e.target.result)
+      };
+      reader.readAsDataURL(input.files[0]);
+      $("#upload-text").remove();
+      $("#upload_button").parent(".profile-img-container").after("<div class='h4 white-text text-center' id='upload-text'>Got it! Click update to save image</div>");
+    }
+  }
+}
