@@ -6,6 +6,7 @@ class Doctor < ApplicationRecord
   enum gender: {male: '0', female: '1'}
 
   has_one :picture, as: :imageable, dependent: :destroy
+  has_many :hospitals
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |doctor|

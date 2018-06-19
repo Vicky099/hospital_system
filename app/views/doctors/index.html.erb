@@ -19,7 +19,7 @@
                   <b> Name :</b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.first_name.to_s+' '+current_doctor.last_name.to_s %>
+                  <%= current_doctor.full_name %>
                 </div>
               </div><br/>
               <div class="row">
@@ -43,7 +43,7 @@
                   <b> Residence Address : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.residence_address.to_s+", "+current_doctor.city.to_s+", "+current_doctor.state.to_s %>
+                  <%= current_doctor.residence_address.to_s+" - "+current_doctor.city.to_s+" - "+current_doctor.state.to_s %>
                 </div>
               </div><br/>
               <div class="row">
@@ -51,7 +51,7 @@
                   <b> Education & Specialist : </b>
                 </div>
                 <div class="col-md-9">
-                  <%= current_doctor.education.to_s+", "+current_doctor.specialist.to_s %>
+                  <%= current_doctor.education.to_s+" - "+current_doctor.specialist.to_s %>
                 </div>
               </div><br/>
             </div>
@@ -93,45 +93,97 @@
           <div class="post">
             <div class="form-group">
               <div class="row">
-                <div class="col-md-3">
-                  <b> Name :</b>
-                </div>
-                <div class="col-md-9">
-                  <%= current_doctor.first_name.to_s+' '+current_doctor.last_name.to_s %>
-                </div>
-              </div><br/>
-              <div class="row">
-                <div class="col-md-3">
-                  <b> Email ID:</b>
-                </div>
-                <div class="col-md-9">
-                  <%= current_doctor.email %>
-                </div>
-              </div><br/>
-              <div class="row">
-                <div class="col-md-3">
-                  <b> Mobile No. :</b>
-                </div>
-                <div class="col-md-9">
-                  <%= current_doctor.mobile_no %>
-                </div>
-              </div><br/>
-              <div class="row">
-                <div class="col-md-3">
-                  <b> Residence Address : </b>
-                </div>
-                <div class="col-md-9">
-                  <%= current_doctor.residence_address.to_s+", "+current_doctor.city.to_s+", "+current_doctor.state.to_s %>
-                </div>
-              </div><br/>
-              <div class="row">
-                <div class="col-md-3">
-                  <b> Education & Specialist : </b>
-                </div>
-                <div class="col-md-9">
-                  <%= current_doctor.education.to_s+", "+current_doctor.specialist.to_s %>
-                </div>
-              </div><br/>
+                  <div class="col-md-12">
+                    <%= link_to "Add New Hospital", new_hospital_path, class: 'btn btn-default pull-right' %>
+                  </div>
+              </div>
+              <% if @hospitals.present? %>
+                <% @hospitals.each do |hospital| %>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Name :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.name %>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Registration Num :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.registration_num %>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Contact Num :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.contact_num %>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Address :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.address %> - <%= hospital.landmark%>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Facilities :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.facilities %>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> No. of Beds:</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.no_of_beds %>
+                    </div>
+                  </div><br/>
+                  <div class="row">
+                    <div class="col-md-3">
+                      <b> Working Hours :</b>
+                    </div>
+                    <div class="col-md-9">
+                      <%= hospital.working_hours %>
+                    </div>
+                  </div><br/>
+                  <% if hospital.type_of_hospital.to_s == 'owner' %>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <b> Hospital Owner :</b>
+                      </div>
+                      <div class="col-md-9">
+                        <%= current_doctor.full_name %>
+                      </div>
+                    </div><br/>
+                  <% else %>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <b> Hospital Type :</b>
+                      </div>
+                      <div class="col-md-9">
+                        <%= hospital.type_of_hospital %>
+                      </div>
+                    </div><br/>
+                  <% end %>
+                  <div class="row">
+                    <div class="col-md-3">
+                        <%= link_to 'Edit', edit_hospital_path(hospital.id), class: 'btn btn-block btn-primary btn-xs' %>
+                    </div>
+                  </div>
+                  <hr/>
+                <% end %>
+              <% else %>
+                <%= 'No Hospital information availble' %>
+              <% end %>
             </div>
           </div>
         </div>

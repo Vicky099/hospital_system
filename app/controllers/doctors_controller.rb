@@ -2,9 +2,11 @@ class DoctorsController < ApplicationController
   layout "application"
 
   def index
+    @hospitals = current_doctor.hospitals
   end
 
   def new
+
   end
 
   def create

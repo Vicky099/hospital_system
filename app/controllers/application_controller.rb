@@ -3,7 +3,13 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
   def after_sign_in_path_for(resources)
-    dashboards_path
+    if current_doctor.hospitals.present?
+      flash[:notice] = "signed in successfully."
+      dashboards_path
+    else
+      flash[:alert] = 'Please fill hospital information to complete your sign-up activity.'
+      new_hospital_path
+    end
   end
 
   def after_sign_out_path_for(resources)

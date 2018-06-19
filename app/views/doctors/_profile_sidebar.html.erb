@@ -3,7 +3,7 @@
   <div class="box-body box-profile" id="profile-image">
     <%= image_tag current_doctor.photo_url, class: 'profile-user-img img-responsive img-circle', alt: 'User profile picture' %>
 
-    <h3 class="profile-username text-center"><%= current_doctor.first_name+' '+current_doctor.last_name %></h3>
+    <h3 class="profile-username text-center"><%= current_doctor.full_name %></h3>
 
     <p class="text-muted text-center"><%= current_doctor.education %></p>
 
