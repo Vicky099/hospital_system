@@ -1,0 +1,19 @@
+<section class="content-header">
+  <h1>
+    Create New Patient
+    <small>Don't forget to choose hospital (by default its owner hospital)</small>
+  </h1>
+</section><br/>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">New Patient</h3>
+  </div>
+  <%= form_for @patient, :url=> patients_path, html: { method: :post}  do |f| %>
+    <div class="box-body">
+      <%= render partial: 'form', locals:{f: f}%>
+    </div>
+    <div class="box-footer">
+      <%= f.submit 'Prescribe Medicines', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>

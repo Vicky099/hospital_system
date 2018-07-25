@@ -9,5 +9,19 @@ Rails.application.routes.draw do
 
   resources :dashboards
   resources :doctors
-  resources :hospitals
+
+  resources :hospitals do
+    resources :medical_stores
+  end
+
+  resources :patients do
+    member do
+      get :prescribe_medicine
+      get :generate_bill
+      post :create_prescription
+    end
+    collection do
+
+    end
+  end
 end

@@ -3,7 +3,7 @@ class HospitalsController < ApplicationController
   before_action :doctors_hospital, only:[:edit, :update]
 
   def index
-    @hospital = Hospital.all
+    @hospitals = current_doctor.hospitals
   end
 
   def new
@@ -11,9 +11,8 @@ class HospitalsController < ApplicationController
   end
 
   def create
-    hospital = current_doctor.hospitals.build(hospital_params)
-    binding.pry
-    if hospital.save
+    @hospital = current_doctor.hospitals.build(hospital_params)
+    if @hospital.save
       flash[:success] = "Hospital Added successfully"
       redirect_to doctors_path
     else
@@ -23,7 +22,7 @@ class HospitalsController < ApplicationController
   end
 
   def show
-    @hospital = Hospital.find_by_id(params[:id])
+    @hospital = current_doctor.hospitals.find_by_id(params[:id])
   end
 
   def edit

@@ -1,0 +1,61 @@
+<section class="content-header">
+  <h1>
+    Prescription
+  </h1>
+</section><br/>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Medicine Info : <%= @patient.first_name %></h3>
+  </div>
+  <%= nested_form_for @prescription, :url=> create_prescription_patient_path, html: { method: :post}  do |f| %>
+    <div class="box-body">
+      <%= f.fields_for :medicines do |m| %>
+        <%= m.link_to_remove "Remove this task", :class => "btn btn-danger pull-right" %>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label>Medicine name</label>
+              <%= m.text_field :name, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <%= m.check_box :morning, {:class => "flat-red"}, "YES", "NO" %>
+                Morning
+              </label><br/>
+              <label>Morning Timing</label>
+              <%= m.select :morning_time, options_for_select(@medicine.medicine_times), { prompt: true }, class: 'form-control'%>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <%= m.check_box :afternoon, {:class => "flat-red"}, "YES", "NO" %>
+                Afternoon
+              </label>
+              <br/>
+              <label>Morning Timing</label>
+              <%= m.select :afternoon_time, options_for_select(@medicine.medicine_times), { prompt: true }, class: 'form-control'%>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>
+                <%= m.check_box :night, {:class => "flat-red"}, "YES", "NO" %>
+                Night
+              </label>
+              <br/>
+              <label>Morning Timing</label>
+              <%= m.select :night_time, options_for_select(@medicine.medicine_times), { prompt: true },class: 'form-control'%>
+            </div>
+          </div>
+        </div><hr/>
+      <% end %>
+      <%= f.link_to_add 'Add one more medicine', :medicines, class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class="box-footer">
+      <%= f.submit 'Generate Bill', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>

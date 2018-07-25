@@ -7,6 +7,7 @@ class Doctor < ApplicationRecord
 
   has_one :picture, as: :imageable, dependent: :destroy
   has_many :hospitals
+  has_many :patients
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |doctor|

@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Medical Name</label>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label>Owner Name</label>
+      <%= f.text_field :owner, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Address</label>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label>Contact no.</label>
+      <%= f.text_field :contact_no, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>GST No.</label>
+      <%= f.text_field :gst_no, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label>Pancard No.</label>
+      <%= f.text_field :pancard_no, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Status</label>
+      <%= f.select(:status, MedicalStore.statuses.keys, {prompt: 'Select status'}, {:class => 'form-control'}) %>
+    </div>
+    <div class="form-group">
+      <label> Hospital Name</label>
+      <%= text_field_tag :hospital_name, @current_hospital.name, disabled: true ,class: 'form-control' %>
+    </div>
+  </div>
+</div>

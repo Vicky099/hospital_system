@@ -1,0 +1,57 @@
+<section class="content-header">
+  <h1>
+    New Medical Store
+  </h1>
+</section><br/>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Medical Store Info For Hospital : <%= @current_hospital.name %></h3>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Medical Name : </label>
+          <%= @medical_store.name %>
+        </div>
+        <div class="form-group">
+          <label>Owner Name : </label>
+          <%= @medical_store.owner %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address : </label>
+          <%= @medical_store.address %>
+        </div>
+        <div class="form-group">
+          <label>Contact No. : </label>
+          <%= @medical_store.contact_no %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>GST No. : </label>
+          <%= @medical_store.gst_no %>
+        </div>
+        <div class="form-group">
+          <label>Pancard No : </label>
+          <%= @medical_store.pancard_no %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Status. : </label>
+          <%= @medical_store.status.titleize %>
+        </div>
+        <div class="form-group">
+          <label>Hospital_name : </label>
+          <%= @current_hospital.name %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to 'Back', hospital_medical_stores_path,class: 'btn btn-default' %>
+  </div>
+</div>

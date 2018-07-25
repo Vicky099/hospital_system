@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180619032536) do
+ActiveRecord::Schema.define(version: 20180701173030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,58 @@ ActiveRecord::Schema.define(version: 20180619032536) do
     t.index ["doctor_id"], name: "index_hospitals_on_doctor_id"
   end
 
+  create_table "medical_stores", force: :cascade do |t|
+    t.bigint "hospital_id"
+    t.string "owner"
+    t.string "name"
+    t.text "address"
+    t.string "contact_no"
+    t.string "status"
+    t.string "gst_no"
+    t.string "pancard_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hospital_id"], name: "index_medical_stores_on_hospital_id"
+  end
+
+  create_table "medicines", force: :cascade do |t|
+    t.bigint "prescription_id"
+    t.text "name"
+    t.text "morning"
+    t.text "morning_time"
+    t.text "afternoon"
+    t.text "afternoon_time"
+    t.text "night"
+    t.text "night_time"
+    t.text "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["prescription_id"], name: "index_medicines_on_prescription_id"
+  end
+
+  create_table "patients", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "hospital_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.text "address"
+    t.string "contact_num"
+    t.string "gender"
+    t.string "date_of_birth"
+    t.string "age"
+    t.string "pulse"
+    t.string "bp"
+    t.text "gen_obs"
+    t.text "major_obs"
+    t.text "disease_found"
+    t.text "appointment_status"
+    t.text "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["doctor_id"], name: "index_patients_on_doctor_id"
+    t.index ["hospital_id"], name: "index_patients_on_hospital_id"
+  end
+
   create_table "pictures", force: :cascade do |t|
     t.string "name"
     t.string "imageable_type"
@@ -69,6 +121,15 @@ ActiveRecord::Schema.define(version: 20180619032536) do
     t.datetime "updated_at", null: false
     t.string "photo"
     t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable_type_and_imageable_id"
+  end
+
+  create_table "prescriptions", force: :cascade do |t|
+    t.bigint "patient_id"
+    t.string "recheck_date"
+    t.string "doctor_bill_amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
   end
 
 end

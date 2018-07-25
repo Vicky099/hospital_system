@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Hospital:</label><small> By default your own hospital</small>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Select Hospital</label>
+      <%= f.select :hospital_id, options_for_select(@hospitals.map{|h| [h.name, h.id.to_i]},@own_hospital.id.to_i || ''), { prompt: true }, required: true, class: 'form-control' %>
+    </div>
+  </div>
+</div><hr/>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Personal info:</label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>First Name</label>
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label>Last Name</label>
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Address</label>
+      <%= f.text_field :address, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <label>Contact No.</label>
+      <%= f.text_field :contact_num, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Gender</label>
+      <%= f.select(:gender, Patient.genders.keys, {prompt: 'Select gender'}, {:class => 'form-control'}) %>
+    </div>
+    <div class="form-group">
+      <label>Age</label>
+      <%= f.text_field :age, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Date of Birth.</label>
+      <%= f.date_field :date_of_birth, class: 'form-control' %>
+    </div>
+  </div>
+</div><hr/>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Check-up analysis:</label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Pulse</label>
+      <%= f.text_field :pulse, class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <label>BP</label>
+      <%= f.text_field :bp, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Genaral observation</label>
+      <%= f.text_field :gen_obs, class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <label>Major observation</label>
+      <%= f.text_field :major_obs, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>disease found</label>
+      <%= f.text_field :disease_found, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>Patient status</label>
+      <%= f.select(:status, Patient.statuses.keys, {prompt: 'choose status'}, {:class => 'form-control'}) %>
+    </div>
+  </div>
+</div>

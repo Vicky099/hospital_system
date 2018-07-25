@@ -7,5 +7,10 @@ class Hospital < ApplicationRecord
   validates :type_of_hospital, presence: true
 
   belongs_to :doctor
+  has_many :patients
+  has_many :medical_stores
 
+  def active_medical_store
+  	self.medical_stores.where(status: 'active').first
+  end
 end

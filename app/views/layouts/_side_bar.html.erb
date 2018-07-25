@@ -22,9 +22,26 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> All Patients</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Today's Patients</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Pending Appointment's</a></li>
+            <li class="active">
+              <%= link_to patients_path do %>
+                <i class="fa fa-circle-o"></i>All Patients
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-circle-o"></i>Today's Patients
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "#" do %>
+                <i class="fa fa-circle-o"></i>Pending Appointment's
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_patient_path do %>
+                <i class="fa fa-circle-o"></i>Add Patient Info
+              <% end %>
+            </li>
           </ul>
         </li>
         <li class="treeview">
@@ -48,7 +65,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Hospital Info</a></li>
+            <li class="active">
+              <%= link_to hospitals_path do %>
+                <i class="fa fa-circle-o"></i>Hospital Info
+              <% end %>
+            </li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Appoint Staff </a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Medical Store Partner</a></li>
           </ul>

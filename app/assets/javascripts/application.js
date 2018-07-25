@@ -17,6 +17,7 @@
 //= require bootstrap-datepicker
 //= require adminlte.min
 //= require turbolinks
+//= require jquery_nested_form
 //= require_tree .
 
 

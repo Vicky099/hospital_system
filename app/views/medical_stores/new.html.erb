@@ -1,0 +1,18 @@
+<section class="content-header">
+  <h1>
+    New Medical Store
+  </h1>
+</section><br/>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Medical Store Info For Hospital : <%= @current_hospital.name %></h3>
+  </div>
+  <%= form_for @medical_store, :url=> hospital_medical_stores_path, html: { method: :post}  do |f| %>
+    <div class="box-body">
+      <%= render :partial => 'form', locals:{f: f} %>
+    </div>
+    <div class="box-footer">
+      <%= f.submit 'Welcome Medical Partner', class: 'btn btn-success' %>
+    </div>
+  <% end %>
+</div>
