@@ -50,6 +50,7 @@ gem 'cloudinary'
 gem 'carrierwave'
 gem 'ionicons-rails'
 gem "nested_form"
+gem 'sprockets', '~> 3.7', '>= 3.7.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
