@@ -14,9 +14,46 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
+        <li class="active">
+          <%= link_to dashboards_path do %>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          <% end %>
+        </li>
+
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            <i class="fa fa-user-md"></i> <span>Doctor</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active">
+              <%= link_to doctors_path do %>
+                <i class="fa fa-angle-right"></i> Profile
+              <% end %>
+            </li>
+            <li>
+              <%= link_to hospitals_path do %>
+                <i class="fa fa-angle-right"></i> Hospitals
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_hospital_path do %>
+                <i class="fa fa-angle-right"></i> Add Hospital
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_patient_path do %>
+                <i class="fa fa-angle-right"></i> Add New Patient
+              <% end %>
+            </li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-bed"></i> <span> Patient</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -24,116 +61,38 @@
           <ul class="treeview-menu">
             <li class="active">
               <%= link_to patients_path do %>
-                <i class="fa fa-circle-o"></i>All Patients
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-circle-o"></i>Today's Patients
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-circle-o"></i>Pending Appointment's
+                <i class="fa fa-angle-right"></i> Patients
               <% end %>
             </li>
             <li>
               <%= link_to new_patient_path do %>
-                <i class="fa fa-circle-o"></i>Add Patient Info
+                <i class="fa fa-angle-right"></i> New Patient Data
+              <% end %>
+            </li>
+            <li>
+              <%= link_to patients_path(today: true) do %>
+                <i class="fa fa-angle-right"></i> Today’s Patient
               <% end %>
             </li>
           </ul>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-user-md"></i> <span>For Doctor</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Bio-data</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Hospital</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Total patient's</a></li>
-          </ul>
+
+        <li>
+          <%= link_to hospitals_path do %>
+            <i class="fa fa-hospital-o"></i> <span>Hospital</span>
+          <% end %>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-hospital-o"></i> <span>For Hospital</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active">
-              <%= link_to hospitals_path do %>
-                <i class="fa fa-circle-o"></i>Hospital Info
-              <% end %>
-            </li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Appoint Staff </a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Medical Store Partner</a></li>
-          </ul>
+
+        <li>
+          <%= link_to "#" do %>
+            <i class="fa fa-book"></i> <span>Report's</span>
+          <% end %>
         </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-bed"></i> <span> For patients</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Check-up Data</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Prescriptions </a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Generate Bill & Print</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-bullhorn"></i> <span>Visits</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Visit History</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-users"></i> <span>Appointment</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Today's Appointment</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Pending Appointment</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Appointment to Patient</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> All Appointments</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Reschedule Appointment</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-book"></i> <span> Test Cases</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Treatment Story</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-comments"></i> <span> Doctor blog</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Disease Information</a></li>
-          </ul>
+
+        <li>
+          <%= link_to "#" do %>
+            <i class="fa fa-comments"></i> <span>Blog's</span>
+          <% end %>
         </li>
       </ul>
     </section>

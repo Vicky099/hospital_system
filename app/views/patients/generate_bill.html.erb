@@ -2,7 +2,7 @@
 <section class="content-header">
   <h1>
     Prescription
-    <small>#007612</small>
+    <small class="text-green">#<%= @prescription.prescription_num %></small>
   </h1>
 </section>
 
@@ -49,13 +49,25 @@
     </div>
     <!-- /.col -->
     <div class="col-sm-4 invoice-col">
-      <b>Prescription #007612</b><br>
+      <b>Prescription</b> <span class="text-green">#<%= @prescription.prescription_num %></span><br>
       <br>
       <b>Doctor Name:</b> <%= @patient.doctor.full_name %><br/>
       <b>Hospital Name:</b> <%= @patient.hospital.name.titleize %><br/>
       <b>Hospital Reg No.:</b> <%= @patient.hospital.registration_num %><br>
       <b>Hospital Contact No.:</b> <%= @patient.hospital.contact_num %><br>
 
+    </div>
+    <!-- /.col -->
+  </div>
+  <div class="row">
+    <!-- accepted payments column -->
+    <div class="col-xs-12">
+      <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+        <label>Number of days Medicine taken : </label>
+        <b class="text-red"><%= @prescription.no_of_days_medicine_taken %> days </b><br/>
+        <label>Your next recheck-up date is : </label>
+        <b class="text-red"><%= Time.new(@prescription.recheck_date).strftime("%A, %d %B %Y") %></b>
+      </p>
     </div>
     <!-- /.col -->
   </div>
@@ -90,7 +102,7 @@
   <div class="row">
     <!-- accepted payments column -->
     <div class="col-xs-12">
-      <p class="lead">Note : Hi Medical Partner</p>
+      <p class="lead">Note : Hi <%= @medical_store.owner.to_s.titleize %>,</p>
       <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
       Hope you are doing well, Please print the prescription and create bill from your system (it will be a soft or hard copy) and upload in the patient portal. and both hard copy to patient.
       <br/>

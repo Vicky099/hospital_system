@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180701173030) do
+ActiveRecord::Schema.define(version: 20180726085041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20180701173030) do
     t.text "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "charge"
     t.index ["doctor_id"], name: "index_patients_on_doctor_id"
     t.index ["hospital_id"], name: "index_patients_on_hospital_id"
   end
@@ -129,6 +130,8 @@ ActiveRecord::Schema.define(version: 20180701173030) do
     t.string "doctor_bill_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "prescription_num"
+    t.string "no_of_days_medicine_taken"
     t.index ["patient_id"], name: "index_prescriptions_on_patient_id"
   end
 

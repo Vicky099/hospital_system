@@ -39,7 +39,7 @@ class PatientsController < ApplicationController
 	end
 
 	def prescribe_medicine
-		@prescription = Prescription.new
+		@prescription = @patient.build_prescription(prescription_num: Prescription.random_prescription_number_generation(current_doctor.id, @patient.id))
 		@medicine = @prescription.medicines.new
 	end
 
@@ -65,7 +65,7 @@ class PatientsController < ApplicationController
 	end
 
 	def prescription_params
-		params.require(:prescription).permit(:recheck_date, :doctor_bill_amount, medicines_attributes: [:id,:prescription_id, :name, :morning, :morning_time, :afternoon, :afternoon_time, :night, :night_time, :status, :_destroy])
+		params.require(:prescription).permit(:recheck_date, :doctor_bill_amount, :prescription_num, :no_of_days_medicine_taken, medicines_attributes: [:id,:prescription_id, :name, :morning, :morning_time, :afternoon, :afternoon_time, :night, :night_time, :status, :_destroy])
 	end
 
 	def valid_patient
@@ -80,5 +80,4 @@ class PatientsController < ApplicationController
 		@hospitals = current_doctor.hospitals
 		@own_hospital = current_doctor.hospitals.where(type_of_hospital: 'owner').first
 	end
-
 end

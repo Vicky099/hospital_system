@@ -9,8 +9,30 @@
   </div>
   <%= nested_form_for @prescription, :url=> create_prescription_patient_path, html: { method: :post}  do |f| %>
     <div class="box-body">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Your Prescription No.</label>
+            <%= f.text_field :prescription_num, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label>Re-Check Scheduled Date</label>
+            <%= f.date_field :recheck_date, class: 'form-control' %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Number of days Medicine taken</label>
+            <%= f.text_field :no_of_days_medicine_taken, class: 'form-control' %>
+          </div>
+          <div class="form-group">
+            <label>Hospital Charge</label>
+            <%= f.text_field :doctor_bill_amount, class: 'form-control' %>
+          </div>
+        </div>
+      </div><hr/>
       <%= f.fields_for :medicines do |m| %>
-        <%= m.link_to_remove "Remove this task", :class => "btn btn-danger pull-right" %>
+        <%= m.link_to_remove "Remove this Medicine", :class => "btn btn-danger pull-right" %>
         <div class="row">
           <div class="col-md-12">
             <div class="form-group">

@@ -11,4 +11,10 @@ module DashboardsHelper
 	def pending_appointment_count
 		current_doctor.patients.where(appointment_status: 'pending').count
 	end
+
+	def todays_earning
+		amount = []
+		current_doctor.patients.each{|patient| amount << patient.prescription.doctor_bill_amount.to_i}
+		return amount.compact.sum
+	end
 end
