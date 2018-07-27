@@ -37,16 +37,18 @@
       </address>
     </div>
     <!-- /.col -->
-    <div class="col-sm-4 invoice-col">
-      Medical Name
-      <address>
-        <strong><%= @medical_store.name.to_s.titleize %></strong><br>
-        Name: <%= @medical_store.owner.to_s.titleize %><br/>
-        Address: <%= @medical_store.address %><br>
-        GST No.: <%= @medical_store.gst_no %><br>
-        Phone: <%= @medical_store.contact_no %><br>
-      </address>
-    </div>
+    <% if @medical_store.present? %>
+      <div class="col-sm-4 invoice-col">
+        Medical Name
+        <address>
+          <strong><%= @medical_store.name.to_s.titleize %></strong><br>
+          Name: <%= @medical_store.owner.to_s.titleize %><br/>
+          Address: <%= @medical_store.address %><br>
+          GST No.: <%= @medical_store.gst_no %><br>
+          Phone: <%= @medical_store.contact_no %><br>
+        </address>
+      </div>
+    <% end %>
     <!-- /.col -->
     <div class="col-sm-4 invoice-col">
       <b>Prescription</b> <span class="text-green">#<%= @prescription.prescription_num %></span><br>
@@ -59,18 +61,24 @@
     </div>
     <!-- /.col -->
   </div>
-  <div class="row">
-    <!-- accepted payments column -->
-    <div class="col-xs-12">
-      <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-        <label>Number of days Medicine taken : </label>
-        <b class="text-red"><%= @prescription.no_of_days_medicine_taken %> days </b><br/>
-        <label>Your next recheck-up date is : </label>
-        <b class="text-red"><%= Time.new(@prescription.recheck_date).strftime("%A, %d %B %Y") %></b>
-      </p>
+  <% if @prescription.no_of_days_medicine_taken.present? || @prescription.recheck_date.present? %>
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-xs-12">
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+          <%if @prescription.no_of_days_medicine_taken.present? %>
+            <label>Number of days Medicine taken : </label>
+            <b class="text-red"><%= @prescription.no_of_days_medicine_taken %> days </b><br/>
+          <% end %>
+          <% if @prescription.recheck_date.present? %>
+            <label>Your next recheck-up date is : </label>
+            <b class="text-red"><%= Time.new(@prescription.recheck_date.to_s).strftime("%A, %d %B %Y") %></b>
+          <% end %>
+        </p>
+      </div>
+      <!-- /.col -->
     </div>
-    <!-- /.col -->
-  </div>
+  <% end %>
   <!-- /.row -->
 
   <!-- Table row -->
@@ -98,21 +106,32 @@
     <!-- /.col -->
   </div>
   <!-- /.row -->
+  <div class="row">
+    <!-- accepted payments column -->
+    <div class="col-xs-12">
+      <p class="lead">For Doctor extra work</p>
+      <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+      </p>
+    </div>
+    <!-- /.col -->
+  </div>
 
   <div class="row">
     <!-- accepted payments column -->
     <div class="col-xs-12">
-      <p class="lead">Note : Hi <%= @medical_store.owner.to_s.titleize %>,</p>
-      <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-      Hope you are doing well, Please print the prescription and create bill from your system (it will be a soft or hard copy) and upload in the patient portal. and both hard copy to patient.
-      <br/>
+      <% if @medical_store.present? %>
+        <p class="lead">Note : Hi <%= @medical_store.owner.to_s.titleize %>,</p>
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+        Hope you are doing well, Please print the prescription and create bill from your system (it will be a soft or hard copy) and upload in the patient portal. and both hard copy to patient.
+        <br/>
+      <% end %>
       <b>Patitent :</b> If you have <b>Medical health insurance</b> then please make sure from your medical rept that <b>your all bills and reports are uploaded or not.</b> Thanks for choosing Doctor Friend.
       </p>
     </div>
     <!-- /.col -->
   </div>
   <!-- /.row -->
-
   <!-- this row will not appear when printing -->
   <div class="row no-print">
     <div class="col-xs-12">

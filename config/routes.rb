@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       post :create_prescription
     end
     collection do
-
+      get :prescriptions
     end
   end
 end

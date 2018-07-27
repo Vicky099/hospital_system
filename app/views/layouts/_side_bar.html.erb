@@ -44,8 +44,18 @@
               <% end %>
             </li>
             <li>
+              <%= link_to patients_path do %>
+                <i class="fa fa-angle-right"></i> Patients
+              <% end %>
+            </li>
+            <li>
               <%= link_to new_patient_path do %>
                 <i class="fa fa-angle-right"></i> Add New Patient
+              <% end %>
+            </li>
+            <li>
+              <%= link_to prescriptions_patients_path do %>
+                <i class="fa fa-angle-right"></i> Precriptions
               <% end %>
             </li>
           </ul>

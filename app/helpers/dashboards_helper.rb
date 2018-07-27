@@ -14,7 +14,7 @@ module DashboardsHelper
 
 	def todays_earning
 		amount = []
-		current_doctor.patients.each{|patient| amount << patient.prescription.doctor_bill_amount.to_i}
+		current_doctor.patients.each{|patient| amount << patient.prescriptions.pluck(:doctor_bill_amount).map(&:to_i).sum}
 		return amount.compact.sum
 	end
 end

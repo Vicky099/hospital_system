@@ -7,6 +7,6 @@ class Patient < ApplicationRecord
 	belongs_to :doctor
 	belongs_to :hospital
 
-	has_one :prescription
+	has_many :prescriptions
 
 end
