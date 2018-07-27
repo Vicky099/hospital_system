@@ -1,0 +1,28 @@
+<section class="content-header">
+  <h1>
+    Prescription No. #<%= @prescription.prescription_num %>
+  </h1>
+</section><br/>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="pad margin no-print">
+		  <div class="callout callout-info" style="margin-bottom: 0!important;">
+		    <h4><i class="fa fa-thumbs-up"></i> Thank You So Much</h4>
+	    	<p>Kindly share a prescription number with patient and ask patient to go the respected medical partner and bring medicines from there only.
+	    	</p>
+	    	<br/>
+	    	<p>
+	    	Ask Patient to share prescription number with Medical Partner.
+	    	</p>
+	    	<br/>
+	    	<p>Your Efforts is greatly appreciated !!! </p>
+		  </div><br/>
+		  <div class="box box-success">
+				<div class="box-footer">
+					<%= link_to "Create New Patient data", new_patient_path, class: 'btn btn-success'%>
+					<%= link_to "Write Blog on this patient story", '#', class: 'btn btn-primary'%>
+				</div>
+			</div>
+		</div>
+  </div>
+</div>

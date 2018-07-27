@@ -19,9 +19,12 @@ Rails.application.routes.draw do
       get :prescribe_medicine
       get :generate_bill
       post :create_prescription
+      get :transferred_to_medical_store
+      get :prsc_list
     end
     collection do
       get :prescriptions
+      get '/:patient_id/thank_you/:id', to: 'patients#thank_you', as: 'thank-you-doctor'
     end
   end
 end

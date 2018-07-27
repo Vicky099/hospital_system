@@ -136,8 +136,9 @@
   <div class="row no-print">
     <div class="col-xs-12">
       <a href="#" onclick="window.print();return false;" class="btn btn-default"><i class="fa fa-print"></i>Print</a>
-      <button type="button" class="btn btn-success pull-right"><i class="fa fa-address-card-o"></i> Submit to Medical store
-      </button>
+      <%= link_to transferred_to_medical_store_patient_path(id: @patient.id, preseq: @prescription.id), class: "btn btn-success pull-right" do %>
+        <i class="fa fa-address-card-o"></i>Submit to Medical Store
+      <% end %>
     </div>
   </div>
 </section>

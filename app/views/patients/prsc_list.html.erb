@@ -1,14 +1,14 @@
 <section class="content-header">
   <h1>
-    Patients
-    <small>It includes all patients</small>
+    Prescriptions
+    <small>It includes <%= @patient.first_name %>'s prescriptions</small>
   </h1>
 </section><br/>
 <div class="row">
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Patient records</h3>
+        <h3 class="box-title">Prescription records</h3>
 
         <div class="box-tools">
           <div class="input-group input-group-sm" style="width: 150px;">
@@ -23,34 +23,27 @@
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
           <tr>
-            <th>Patient Name</th>
+            <th>Prescription No.</th>
             <th>Hospital Name</th>
-            <th>Appointment Status</th>
-            <th>disease</th>
             <th>Date</th>
             <th>Action</th>
           </tr>
-          <% if @patients.present? %>
-            <% @patients.each do |patient| %>
-              <tr>
-                <td><%= patient.first_name.to_s+" "+patient.last_name.to_s %></td>
-                <td><%= patient.hospital.name %></td>
-                <td><%= appointment_status_data(patient).html_safe %></td>
-                <td><%= patient.disease_found %></td>
-                <td><%= patient.created_at.strftime('%d-%m-%Y')%></td>
-                <td>
-                  <% if patient.appointment_status == 'pending'%>
-                    <%= link_to 'Prescribe Medicine', prescribe_medicine_patient_path(patient.id), class: 'btn btn-link' %>
-                  <% else %>
-                    <%= link_to 'Prescription Done', prsc_list_patient_path(patient.id), class: 'btn btn-link' %>
 
+          <% if @prescriptions.present? %>
+            <% @prescriptions.each do |prescription| %>
+              <tr>
+                <td><%= prescription.prescription_num %></td>
+                <td><%= prescription.patient.hospital.name %></td>
+                <td><%= prescription.created_at.strftime('%d-%m-%Y')%></td>
+                <td>
+                  <% if prescription.patient.appointment_status == 'bill_generate' %>
+                    <%= link_to 'Generate Bill', generate_bill_patient_path(id: prescription.patient_id, preseq: prescription.id), class: 'btn btn-link' %></td>
                   <% end %>
-                </td>
               </tr>
             <% end %>
           <% else %>
             <tr>
-              <td>No Patients records available.</td><td></td><td></td><td></td><td></td>
+              <td>No prescription records available.</td><td></td><td></td><td></td><td></td>
             </tr>
           <% end %>
         </table>

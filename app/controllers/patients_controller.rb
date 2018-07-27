@@ -1,6 +1,6 @@
 class PatientsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :valid_patient, only:[:show, :edit, :update, :prescribe_medicine, :create_prescription, :generate_bill]
+	before_action :valid_patient, only:[:show, :edit, :update, :prescribe_medicine, :create_prescription, :generate_bill, :transferred_to_medical_store, :prsc_list]
 	before_action :own_hospitals, only:[:new, :create]
 
 	def index
@@ -17,6 +17,7 @@ class PatientsController < ApplicationController
 
 	def create
 		@patient = current_doctor.patients.build(patient_params)
+		@patient.appointment_status = 'pending'
 		if @patient.save
 			flash[:notice] = "Patient report added successfully. Please prescribe medicine's for #{@patient.first_name}."
 			redirect_to prescribe_medicine_patient_path(@patient.id)
@@ -49,6 +50,7 @@ class PatientsController < ApplicationController
 
 	def create_prescription
 		@prescription = @patient.prescriptions.build(prescription_params)
+		@patient.appointment_status = 'presc_ready'
 		if @prescription.save
 			flash[:notice] = "Please re-verify medicine's and print the medicine prescription, we will forward same prescription to your medical partner. Thank You."
 			redirect_to generate_bill_patient_path(id: @prescription.patient_id, preseq: @prescription.id)
@@ -61,6 +63,8 @@ class PatientsController < ApplicationController
 	def generate_bill
 		@prescription = @patient.prescriptions.find_by_id(params[:preseq])
 		@medical_store = @patient.hospital.active_medical_store
+		@patient.appointment_status = 'bill_generate'
+		@patient.save
 	end
 
 	def prescriptions
@@ -69,6 +73,22 @@ class PatientsController < ApplicationController
 			prescriptions << patient.prescriptions
 		end
 		@prescriptions = prescriptions.flatten
+	end
+
+	def transferred_to_medical_store
+		@patient.appointment_status = 'submit_to_medical_store'
+		@patient.save
+		flash[:success] = "Your Prescription is transferred to medical store. Please note the prescription number on card and give it to patient. Thank you for choosing Doctor Friend."
+		redirect_to thank_you_doctor_patients_path(@patient.id, params[:preseq])
+	end
+
+	def prsc_list
+		@prescription = @patient.prescriptions
+	end
+
+	def thank_you
+		@patient = current_doctor.patients.find_by_id(params[:patient_id])
+		@prescription = @patient.prescriptions.find_by_id(params[:id])
 	end
 
 	private
@@ -92,4 +112,5 @@ class PatientsController < ApplicationController
 		@hospitals = current_doctor.hospitals
 		@own_hospital = current_doctor.hospitals.where(type_of_hospital: 'owner').first
 	end
+
 end
