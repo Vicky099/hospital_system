@@ -5,4 +5,7 @@ class DashboardsController < ApplicationController
   def index
   end
 
+  def earning_report
+  end
+
 end

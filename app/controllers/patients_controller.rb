@@ -6,6 +6,8 @@ class PatientsController < ApplicationController
 	def index
 		if params[:today].to_s == 'true'
 			@patients = current_doctor.patients.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now.end_of_day).order('created_at DESC')
+		elsif params[:pending].to_s == 'true'
+			@patients = current_doctor.patients.where(appointment_status: 'pending').order('created_at DESC')
 		else
 			@patients = current_doctor.patients.order('created_at DESC')
 		end
@@ -83,7 +85,7 @@ class PatientsController < ApplicationController
 	end
 
 	def prsc_list
-		@prescription = @patient.prescriptions
+		@prescriptions = @patient.prescriptions
 	end
 
 	def thank_you

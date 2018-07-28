@@ -1,0 +1,43 @@
+<section class="content-header">
+  <h1>
+    Earning Reports
+  </h1>
+
+</section><br/>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box box-warning">
+      <div class="box-header">
+      	<h3 class="box-title">Report Analysis</h3>
+      </div>
+      <%= form_tag download_report_dashboards_path, method: :post do %>
+	      <div class="box-body">
+	      	<div class="row">
+					  <div class="col-md-12">
+						  <div class="form-group">
+						  	<label>Date Wise report</label>
+						  </div>
+					  </div>
+					  <div class="col-md-6">
+					    <div class="form-group">
+					      <label>From</label>
+					      <%= date_field_tag 'date_from', '', class: 'form-control'%>
+					    </div>
+					  </div>
+					  <div class="col-md-6">
+					    <div class="form-group">
+					      <label>To</label>
+					      <%= date_field_tag 'date_to', '', class: 'form-control'%>
+					    </div>
+					  </div>
+					</div>
+				</div>
+			  <div class="box-footer">
+  				<%= submit_tag 'Download date wise Report', class: 'btn btn-sm btn-warning'%>
+  				<%= submit_tag 'Download Todays Report', class: 'btn btn-sm btn-success'%>
+  				<%= submit_tag 'Download Total Report', class: 'btn btn-sm btn-primary'%>
+  			</div>
+    	<% end %>
+    </div>
+  </div>
+</div>

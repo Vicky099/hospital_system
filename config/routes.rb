@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     get "logout", to: "devise/sessions#destroy"
   end
 
-  resources :dashboards
+  resources :dashboards do
+    collection do
+      get :earning_report
+      post :download_report
+    end
+  end
   resources :doctors
 
   resources :hospitals do

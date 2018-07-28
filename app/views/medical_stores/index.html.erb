@@ -1,56 +1,58 @@
 <section class="content-header">
   <h1>
     Medical Stores
-  	<%= link_to 'Add Medical Partner', new_hospital_medical_store_path, class: 'btn btn-default pull-right' %>
+    <%= link_to 'Add Medical Partner', new_hospital_medical_store_path, class: 'btn btn-danger pull-right' %>
   </h1>
   <small class="text-red">*You can not add more than one active medical partner. please de-activate current medical partner & then add new one.</small>
 </section><br/>
 <div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Medical Store records</h3>
-
-        <div class="box-tools">
-          <div class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-            <div class="input-group-btn">
-              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+  <% if @medical_stores.present? %>
+    <% @medical_stores.each_with_index do |medical, index| %>
+      <div class="col-xs-4">
+        <div class="box box-success">
+          <div class="box-header">
+            <h3 class="box-title">Medical Partner No. <%= index+1 %></h3>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label>Medical Name.:</label>
+              <span><%= medical.name %></span>
+            </div>
+            <div class="form-group">
+              <label>Owner Name : </label>
+              <span><%= medical.owner %></span>
+            </div>
+            <div class="form-group">
+              <label>Address : </label>
+              <span><%= medical.address %></span>
+            </div>
+            <div class="form-group">
+              <label>Joined Date.: </label>
+              <span><%= medical.created_at.strftime('%A, %d %B %Y') %></span>
+            </div>
+            <div class="form-group">
+              <label>Status : </label>
+              <%= status_label(medical).html_safe %>
+            </div>
+          </div>
+          <div class="box-footer">
+            <div class="col-md-6">
+              <%= link_to 'View', hospital_medical_store_path(medical.hospital_id, medical.id), class: 'btn btn-sm btn-block btn-primary' %>
+            </div>
+            <div class="col-md-6">
+             <%= link_to 'Edit', edit_hospital_medical_store_path(medical.hospital_id, medical.id), class: 'btn btn-sm btn-block btn-success' %>
             </div>
           </div>
         </div>
       </div>
-      <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th>Name</th>
-            <th>Owner Name</th>
-            <th>Hospital Name</th>
-            <th>Address & Contact</th>
-            <th>Status</th>
-            <th>Action</th>
-          </tr>
-          <% if @medical_stores.present? %>
-            <% @medical_stores.each do |medical| %>
-              <tr>
-                <td><%= medical.name %></td>
-                <td><%= medical.owner %></td>
-                <td><%= medical.hospital.name %></td>
-                <td><%= medical.address.to_s+' '+medical.contact_no %></td>
-                <td><%= medical.status.titleize %></td>
-                <td><%= link_to 'View', hospital_medical_store_path(medical.hospital_id, medical.id), class: 'btn btn-link' %> / <%= link_to 'Edit', edit_hospital_medical_store_path(medical.hospital_id, medical.id), class: 'btn btn-link' %></td>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <td>No Medical Store records available.</td><td></td><td></td><td></td><td></td>
-            </tr>
-          <% end %>
-        </table>
+    <% end %>
+  <% else %>
+    <div class="col-xs-4">
+      <div class="box box-danger">
+        <div class="box-header">
+          <span class="text-red">No medical store records available.</span>
+        </div>
       </div>
-      <!-- /.box-body -->
     </div>
-    <!-- /.box -->
-  </div>
+  <% end %>
 </div>

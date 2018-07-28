@@ -37,7 +37,11 @@
                 <td><%= prescription.patient.first_name %></td>
                 <td><%= prescription.patient.hospital.name %></td>
                 <td><%= prescription.created_at.strftime('%d-%m-%Y')%></td>
-                <td><%= link_to 'Generate Bill', generate_bill_patient_path(id: prescription.patient_id, preseq: prescription.id), class: 'btn btn-link' %></td>
+                <td>
+                  <%= link_to 'View', prsc_list_patient_path(prescription.patient_id), class: 'btn btn-link' %>
+                  <% if prescription.patient.appointment_status == "bill_generate" %>
+                    / <%= link_to 'Generate Bill', generate_bill_patient_path(id: prescription.patient_id, preseq: prescription.id), class: 'btn btn-link' %> </td>
+                  <% end %>
               </tr>
             <% end %>
           <% else %>

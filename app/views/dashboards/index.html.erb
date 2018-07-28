@@ -32,7 +32,7 @@
       <div class="icon">
         <i class="ion ion-stats-bars"></i>
       </div>
-       <%= link_to patients_path(today: true), class: 'small-box-footer' do %>
+      <%= link_to patients_path(today: true), class: 'small-box-footer' do %>
         More info <i class="fa fa-arrow-circle-right"></i>
       <% end %>
     </div>
@@ -49,7 +49,9 @@
       <div class="icon">
         <i class="ion ion-person-add"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <%= link_to patients_path(pending: true), class: 'small-box-footer' do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
     </div>
   </div>
   <!-- ./col -->
@@ -63,7 +65,9 @@
       <div class="icon">
         <i class="ion ion-pie-graph"></i>
       </div>
-      <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      <%= link_to earning_report_dashboards_path, class: "small-box-footer" do %>
+        More info <i class="fa fa-arrow-circle-right"></i>
+      <% end %>
     </div>
   </div>
   <!-- ./col -->

@@ -5,51 +5,56 @@
   </h1>
 </section><br/>
 <div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Prescription records</h3>
-
-        <div class="box-tools">
-          <div class="input-group input-group-sm" style="width: 150px;">
-            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-            <div class="input-group-btn">
-              <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+  <% if @prescriptions.present? %>
+    <% @prescriptions.each_with_index do |prescription, index| %>
+      <div class="col-xs-4">
+        <div class="box box-success">
+          <div class="box-header">
+            <h3 class="box-title">Prescription <%= index+1 %></h3>
+          </div>
+          <div class="box-body">
+            <div class="form-group">
+              <label>Prescription No.:</label>
+              <span><%= prescription.prescription_num %></span>
             </div>
+            <div class="form-group">
+              <label>Patient Name : </label>
+              <span><%= prescription.patient.first_name %></span>
+            </div>
+            <div class="form-group">
+              <label>Hospital Name : </label>
+              <span><%= prescription.patient.hospital.name %></span>
+            </div>
+            <div class="form-group">
+              <label>Date : </label>
+              <span><%= prescription.created_at.strftime('%A, %d %B %Y') %></span>
+            </div>
+            <div class="form-group">
+              <label>Diseases : </label>
+              <span><%= prescription.patient.disease_found %></span>
+            </div>
+            <div class="form-group">
+              <label>Medical Store : </label>
+              <span><%= prescription.patient.hospital.active_medical_store.name %></span>
+            </div>
+          </div>
+          <div class="box-footer">
+            <% if prescription.patient.appointment_status == 'bill_generate' %>
+              <%= link_to 'Generate Bill', generate_bill_patient_path(id: prescription.patient_id, preseq: prescription.id), class: 'btn btn-primary pull-right' %></td>
+            <% elsif prescription.patient.appointment_status == 'submit_to_medical_store' %>
+              <span class="label text-blue">Bill Generated & transferred to medical store.</span>
+            <% end %>
           </div>
         </div>
       </div>
-      <!-- /.box-header -->
-      <div class="box-body table-responsive no-padding">
-        <table class="table table-hover">
-          <tr>
-            <th>Prescription No.</th>
-            <th>Hospital Name</th>
-            <th>Date</th>
-            <th>Action</th>
-          </tr>
-
-          <% if @prescriptions.present? %>
-            <% @prescriptions.each do |prescription| %>
-              <tr>
-                <td><%= prescription.prescription_num %></td>
-                <td><%= prescription.patient.hospital.name %></td>
-                <td><%= prescription.created_at.strftime('%d-%m-%Y')%></td>
-                <td>
-                  <% if prescription.patient.appointment_status == 'bill_generate' %>
-                    <%= link_to 'Generate Bill', generate_bill_patient_path(id: prescription.patient_id, preseq: prescription.id), class: 'btn btn-link' %></td>
-                  <% end %>
-              </tr>
-            <% end %>
-          <% else %>
-            <tr>
-              <td>No prescription records available.</td><td></td><td></td><td></td><td></td>
-            </tr>
-          <% end %>
-        </table>
+    <% end %>
+  <% else %>
+    <div class="col-xs-4">
+      <div class="box box-danger">
+        <div class="box-header">
+          <span class="text-red">No prescription records available.</span>
+        </div>
       </div>
-      <!-- /.box-body -->
     </div>
-    <!-- /.box -->
-  </div>
+  <% end %>
 </div>
