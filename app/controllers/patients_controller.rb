@@ -25,6 +25,7 @@ class PatientsController < ApplicationController
 			redirect_to prescribe_medicine_patient_path(@patient.id)
 		else
 			flash[:alert] = "something went wrong"
+			@errors = @patient.errors.messages
 			render :new
 		end
 	end
@@ -39,6 +40,7 @@ class PatientsController < ApplicationController
 		if @patient.update_attributes(patient_params)
 			flash[:notice] = "patient report upated successfully."
 		else
+			@errors = @patient.errors.messages
 		end
 	end
 
@@ -58,6 +60,7 @@ class PatientsController < ApplicationController
 			redirect_to generate_bill_patient_path(id: @prescription.patient_id, preseq: @prescription.id)
 		else
 			flash[:alert] = "Something went wrong"
+			@errors = @prescription.errors.messages
 			render :prescribe_medicine
 		end
 	end

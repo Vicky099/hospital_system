@@ -1,7 +1,7 @@
 class MedicalStoresController < ApplicationController
 	layout 'application'
 	before_action :authenticate_user!
-	before_action :current_hospital, only: [:index, :show, :create, :new, :edit]
+	before_action :current_hospital, only: [:index, :show, :create, :new, :edit, :update]
 	before_action :current_medical_store, only: [:show, :edit, :update]
 
 	def index
@@ -26,6 +26,7 @@ class MedicalStoresController < ApplicationController
 			redirect_to hospital_medical_stores_path
 		else
 			flash[:alert] = "Something went wrong."
+			@errors = @medical_store.errors.messages
 			render :new
 		end
 	end
@@ -43,6 +44,7 @@ class MedicalStoresController < ApplicationController
 			redirect_to hospital_medical_stores_path
 		else
 			flash[:alert] = "Something went wrong"
+			@errors = @medical_store.errors.messages
 			render :edit
 		end
 	end

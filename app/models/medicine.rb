@@ -1,6 +1,7 @@
 class Medicine < ApplicationRecord
 
 	belongs_to :prescription
+	validates :name, presence: true
 
 	def medicine_times
 		return [['before lunch', 'before_lunch'],['after lunch', 'after_lunch']]

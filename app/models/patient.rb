@@ -9,4 +9,16 @@ class Patient < ApplicationRecord
 
 	has_many :prescriptions
 
+	validates :first_name, presence: true
+	validates :last_name, presence: true
+	validates :address, presence: true
+	validates :contact_num, presence: true
+	validates :gender, presence: true
+	validates :date_of_birth, presence: true
+	validates :age, presence: true
+	validates :gen_obs, presence: true
+	validates :major_obs, presence: true
+	validates :disease_found, presence: true
+	validates :status, presence: true
+
 end

@@ -1,1 +1,57 @@
-show hospital info
+<section class="content-header">
+  <h1>
+    Hospital Info
+  </h1>
+</section><br/>
+<div class="box box-default">
+  <div class="box-header with-border">
+    <h3 class="box-title">Details</h3>
+  </div>
+  <div class="box-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Hospital Name : </label>
+          <%= @hospital.name %>
+        </div>
+        <div class="form-group">
+          <label>Owner Name : </label>
+          <%= @hospital.doctor.full_name %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Address : </label>
+          <%= @hospital.address %>
+        </div>
+        <div class="form-group">
+          <label>Contact No. : </label>
+          <%= @hospital.contact_num %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Registration No. : </label>
+          <%= @hospital.registration_num %>
+        </div>
+        <div class="form-group">
+          <label>Bed Counts : </label>
+          <%= @hospital.no_of_beds %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label>Hospital Type. : </label>
+          <%= @hospital.type_of_hospital.titleize %>
+        </div>
+        <div class="form-group">
+          <label>Working Hours : </label>
+          <%= @hospital.working_hours %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to 'Back', hospitals_path, class: 'btn btn-default' %>
+  </div>
+</div>

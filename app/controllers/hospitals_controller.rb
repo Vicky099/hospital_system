@@ -17,6 +17,7 @@ class HospitalsController < ApplicationController
       redirect_to doctors_path
     else
       flash[:alert] = "Something went wrong."
+      @errors = @hospital.errors.messages
       render :new
     end
   end
@@ -34,6 +35,7 @@ class HospitalsController < ApplicationController
       redirect_to doctors_path
     else
       flash[:alert] = "Something went wrong."
+      @errors = @hospital.errors.messages
       render :edit
     end
   end

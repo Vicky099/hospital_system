@@ -41,9 +41,8 @@
                 <td>
                   <% if patient.appointment_status == 'pending'%>
                     <%= link_to 'Prescribe Medicine', prescribe_medicine_patient_path(patient.id), class: 'btn btn-link' %>
-                  <% elsif patient.appointment_status == 'bill_generate' || patient.appointment_status == 'presc_ready' %>
+                  <% else %>
                     <%= link_to 'View Prescription', prsc_list_patient_path(patient.id), class: 'btn btn-link' %>
-
                   <% end %>
                 </td>
               </tr>
